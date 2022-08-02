@@ -1,10 +1,10 @@
 const exp = require('express');
 const rt = express.Router();
-
 let pr = require('../products');
+rt.use(express.json());
 
 //get all
-rt.get('/', (req, res) => {res.status(200).json(pr);});
+rt.get('/', (req, res) => {return res.status(200).json(pr);});
 
 //get by id
 rt.get('/:id', (req, res) => {
@@ -38,3 +38,5 @@ rt.delete('/:id', (req,res) => {
 	pr = pr.filter( (x) => x.id !== id);
 	res.status(200).json(pr);
 });
+
+module.exports = rt;
